@@ -1,0 +1,279 @@
+#########################################################
+# This is the example configuration file for ADMBrowser #
+#########################################################
+
+# This file uses yaml syntax
+# Just like python, indentation is critical.  Use a good text editor to hack on this.
+
+# Start URL
+# This is the "home page" for your kiosk.  It will start here, and return here if reset
+# Default: about:blank
+
+start_url: "http://www.alandmoore.com"
+
+# Whitelist
+# The "whitelist" is a list of domains or hosts which will be matched against any requested url.
+# If the hostname or domain name doesn't match an item on the list, the user gets the "Cannot go there" message
+# see the README file for more details on the whitelist's behavior.
+# The start_url host and bookmark hosts are automatically added to the whitelist.
+# To disable whitelist filtering, just comment out whitelist, leave it empty, or specify use "False" as the value.
+# To just whitelist the start_url host and bookmark url host(s), just put "True".
+# Otherwise, specify a list of domains or hostnames to be added to the whitelist.
+# Default: empty (disabled)
+
+#whitelist: True
+#whitelist: ["alandmoore.com", "my-content-host.example.com"]
+
+# Default User and Password
+# If your browser has to navigate to a password-protected site (e.g., htaccess), you can set a default
+# username and password to use.  The browser will silently send these whenever authentication is requested.
+
+#default_user: user
+#default_password: PaSsWoRd
+
+# Proxy settings
+# You can configure an HTTP proxy and port for the application to use; the format is <host>:<port>
+# Alternately you can just do <host> to use the default port of 8080
+# default: empty (no proxy)
+
+#proxy_server: "192.168.1.1:3128"
+
+# Timeout
+
+# This is a length of time, in seconds.  If the controls are inactive for this
+# length of time, the behavior defined by "timeout_mode" will be executed.
+# Set to 0 to disable this feature
+# Default: 0
+
+timeout: 1800
+
+# "timeout_mode" sets the behavior for the timeout feature
+# Valid options are 'close', 'reset', or 'screensaver'
+# 'close' will exit the program
+# 'reset' will clear the history and go back to the start URL
+# 'screensaver' will hide the navigation bar (if it exists), and take the browser
+# to the screensaver_url.  Any activity will take you back to the start_url from there.
+# default is 'reset'
+
+timeout_mode: 'reset'
+
+# Screensaver URL
+# "screensaver_url" defines the URL the browser should go to in screensaver mode
+# default is "about:blank"
+
+#screensaver_url: 'http://lib.williamson-tn.org'
+
+# Zoom Factor
+# "zoom factor" determines the ratio for text/image scaling (like hitting ctrl-+ or ctrl-- on most browsers).
+# 1.0 is "unzoomed", 0.5 is half-size, 2.0 is double size, etc.
+# Default: 1.0
+
+#zoom_factor: 1.5
+
+# Allow popups
+# "allow_popups" determines whether or not hyperlinks that try to open new browser windows/tabs will be honored or ignored.
+# Default: False
+
+#allow_popups: True
+
+# Allow Plugins
+# "allow_plugins" determines if plugins like flash or java will be enabled.  They must be installed seperately on the system, of course
+# Default: False
+
+#allow_plugins: True
+
+# Force JS confirm
+# "force_js_confirm" allows JavaScript are-you-sure-you-want-to-exit dialog boxes to be overriden with a default answer, "accept" or "deny". When set to "ask", the default, the user is asked each time.
+# Default: "ask"
+
+# force_js_confirm: "accept"
+
+# Suppress alerts
+# "suppress_alerts" blocks JavaScript popup alerts from appearing when True, or shows them when False.
+# Default: False
+# suppress_alerts: True
+
+# SSL Mode
+# "ssl_mode" decides whether problems with ssl certificates will be ignored, or if an error will be shown
+# Possible values are "ignore" and "strict"
+# Default: "strict"
+
+ssl_mode: "ignore"
+
+# Window Size
+# "window_size" sets the default size of the application window.
+# It can be a <width>x<height> value, like "800x600",
+# the word "max", in which case the window will maximize,
+# or "full", in which case the window is full-screen.
+# default: 'max'
+
+#window_size: 'full'
+
+####################
+# UI Configuration #
+####################
+
+# Navigation
+# Set "navigation" to false to hide the top navigation bar.  Note that this makes bookmarks basically useless, since they won't appear.
+# Default: True
+
+#navigation: True
+
+# "navigation_layout" is a list which sets the order and presence of buttons on the navbar from left to right.
+# Valid values include "back", "forward", "refresh", "stop", "zoom_in", "zoom_out", "bookmarks", "print",  and "quit".
+# "separator" will also add a separator line, and "spacer" will add an expanding spacer.
+# Note that "print" will only show up if printing is enabled (allow_print), and "bookmarks" will only show up
+# if bookmarks are defined.
+# The default layout is ["back", "forward", "refresh", "stop", "zoom_in", "zoom_out", "separator", "bookmarks", "separator", "spacer", "quit"]
+# Here's an alternative layout:
+
+#navigation_layout: ["back", "forward", "refresh", "spacer", "bookmarks", "spacer", "quit"]
+
+# Icon Theme
+# "icon_theme" probably only works on Linux, but set it to an installed theme to set the icons for back/forward/reload/quit.
+# The default is whatever your qt4 is set to use.
+
+icon_theme:  "oxygen"
+
+# Stylesheet
+# "stylesheet" will assign a QT stylesheet to the application.  See examples for some style sheets.
+# The default is empty, which will use the default system theme
+
+#stylesheet: "examples/style.css"
+
+# Quit Button
+# "quit_button_text" changes the text on the quit/reset button at the upper right
+# default is "I'm Finished"
+
+#quit_button_text: "Quit"
+
+# "quit_button_mode" can be either 'close' or 'reset'
+# 'close' will cause the button to exit the program
+# 'reset' will simply clear the browser history and return to the main page.
+# default behavior is 'reset'
+
+#quit_button_mode: 'close'
+
+##################
+# Error Messages #
+##################
+
+# Page unavailable
+# "page_unavailable_html" is the path to a *file* that contains html to be displayed whenever a page cannot be accessed,
+# either because it's not available, or blocked due to security rules (whitelist, e.g.).
+# The file should be on the local system, and only reference local resources (css, scripts, etc).
+# It doesn't have to be a full page, or even HTML if you just want a simple text message.
+# Leave it commented to use the default text built into the browser.
+# Default: empty
+
+#page_unavailable_html: "examples/custom404.html"
+
+# Network Down
+# "network_down_html" is the path to a *file* that contains html to be displayed whenever the start_url's host cannot be reached,
+# which is very likely indicative of a network connectivity problem (rather than, say, a security restriction)
+# The file should be on the local system, and only reference local resources (css, scripts, etc).
+# It doesn't have to be a full page, or even HTML if you just want a simple text message.
+# Leave it commented to use the default text built into the browser.
+# Default: empty
+
+#network_down_html: "examples/custom_network_down.html"
+
+############
+# Printing #
+############
+
+# Printing can be enabled by setting "allow_printing" to "True"
+# When enabled, "print" will appear in the page's context menu.
+# If "print" is included in the navigation layout, it will put a print button
+# on the navigation bar too.
+# Default: False
+
+#allow_printing: True
+
+# Several printing defaults can be set to allow silent printing. Please see the README.rst file for an explanation of all the options.
+# Default: empty
+
+#print_settings:
+#    silent: True
+#    orientation: "landscape"
+#    size_unit: millimeter
+#    paper_size: [500, 1000]
+#    margins: [5, 5, 8, 8]
+#    resolution: 300
+#    mode: "screen"
+
+# privacy_mode Configures whether or not "Private Browsing" mode is enabled on the webkit widget.
+# Default: True
+
+#privacy_mode: False
+
+# user_agent allows the user agent string to be overriden, useful for impersonating other browsers.
+# Default: WebKit default user agent
+
+#user_agent: "ADMBrowser"
+
+# user_css allows a custom CSS file to be applied to each page ADMBrowser visits. Accepts any URL supported by QT
+# Default: none
+
+#user_css: file://etc/admbrowser.css
+
+
+#############
+# Bookmarks #
+#############
+
+# Bookmarks are set in this structure.  They will appear as buttons on the top navigation bar.
+# Each bookmark entry takes this form (note the indentation):
+#
+# key:
+#   name: "&Button Label"
+#   url: "http://www.example.com"
+#   description: "A description of the website which will appear in the tooltip"
+#
+# Where "key" can be whatever you want -- most simply, a number.  The bookmarks will be sorted by key before
+# being displayed, so this allows you to control the order in which they appear.
+#
+# There is also an older, simpler syntax that just uses the key as the name.  The downside
+# is that you have no control over the order of the buttons.
+#
+# "&Button Label":
+#    url: "http://www.example.com"
+#    description: "A description of the website which will appear in the tooltip"
+#
+# The ampersand is optional, but if present the character following it will be the keyboard accelerator
+# (e.g., in the example alt-B would activate the bookmark)
+# Default: empty
+
+bookmarks:
+  1:
+    name: "Alan D Moore"
+    url: "http://www.alandmoore.com"
+    description:  "Author's web site."
+
+  2:
+    name: "&Lykwyd Chykyn"
+    url: "http://www.alandmoore.com/lc"
+    description:  "The author's music."
+  3:
+    name: "ADM &Github"
+    url:  "https://github.com/alandmoore"
+    description:  "The author's github site"
+
+# External Content
+
+# If allow_external_content is set to True, clicking a link to an un-renderable MIME-type (PDF, for example)
+# will try to open the content in a specified external application.  If it's false, it will ignore the request.
+# Default: False
+
+#allow_external_content: True
+
+# If you're allowing external content, then you need to specify what to do with a given MIME type.
+# Otherwise, the user will get an error indicating the browser doesn't know what to do with it.
+# Content handlers for external files can be specified here
+# The format is
+# "content-type": "program to open with"
+# The filename of the downloaded data will be passed as an argument
+
+content_handlers:
+  "application/pdf": "acroread"
+  "application/vnd.oasis.opendocument.text": "libreoffice"
