@@ -1,0 +1,10 @@
+#!/bin/bash
+# ADMBROWSER
+# This is a sample launcher script
+# It assumes you've installed admbrowser to /usr/local/share
+# Edit it to fit your system
+
+while true
+do
+python3 /home/kiosk/admbrowser/browser.py $@
+done
