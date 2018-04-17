@@ -16,9 +16,6 @@
 #
 #xfce-mcs-manager &
 
-while true
-/home/kiosk/admbrowser/admbrowser
-
 while :
 do
   /home/kiosk/admbrowser/admbrowser
